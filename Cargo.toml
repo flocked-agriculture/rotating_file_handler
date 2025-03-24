@@ -1,0 +1,10 @@
+[package]
+name = "rotating_file_handler"
+version = "0.1.0"
+edition = "2024"
+authors = ["Wesley Murray"]
+description = "Implements a simple rotating file handler."
+repository = "https://github.com/flocked-agriculture/rotating_file_handler"
+license = "MIT/Apache-2.0"
+
+[dependencies]
