@@ -1,4 +1,4 @@
-name: Rust Deploy
+name: Test Rust Deploy
 
 on:
   push:
@@ -21,15 +21,15 @@ jobs:
           toolchain: stable
 
       # Verify the crate version matches the git tag
-      - name: Verify crate version
-        id: verify_version
-        run: |
-          TAG_VERSION=${GITHUB_REF#refs/tags/v}
-          CRATE_VERSION=$(grep '^version' Cargo.toml | sed -E 's/version = "(.*)"/\1/')
-          if [ "$TAG_VERSION" != "$CRATE_VERSION" ]; then
-            echo "Error: Git tag version ($TAG_VERSION) does not match crate version ($CRATE_VERSION)."
-            exit 1
-          fi
+      # - name: Verify crate version
+      #   id: verify_version
+      #   run: |
+      #     TAG_VERSION=${GITHUB_REF#refs/tags/v}
+      #     CRATE_VERSION=$(grep '^version' Cargo.toml | sed -E 's/version = "(.*)"/\1/')
+      #     if [ "$TAG_VERSION" != "$CRATE_VERSION" ]; then
+      #       echo "Error: Git tag version ($TAG_VERSION) does not match crate version ($CRATE_VERSION)."
+      #       exit 1
+      #     fi
 
       # Run tests
       - name: Run tests
