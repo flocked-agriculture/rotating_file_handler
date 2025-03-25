@@ -50,12 +50,21 @@ jobs:
       #   run: cargo publish --verbose
 
       # Create a GitHub release
-      - name: Create GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
+      - name: Extract release notes from Markdown file
+        id: extract_notes
         run: |
-          gh release create "${{  github.ref_name }}" \
-              --repo="$GITHUB_REPOSITORY" \
-              --title="Rotating File Handler ${{  github.ref_name }}" \
-              --generate-notes
+          cat RELEASE_NOTES.md
+          RELEASE_NOTES=$(cat RELEASE_NOTES.md)
+          echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          RELEASE_NOTES: ${{ env.RELEASE_NOTES }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: $RELEASE_NOTES
+          draft: false
+          prerelease: false
