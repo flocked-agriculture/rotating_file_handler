@@ -51,7 +51,8 @@ jobs:
 
       # Upload artifact for release
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        if-no-files-found: error
         with:
           name: build-artifact
           path: artifacts/
@@ -65,13 +66,14 @@ jobs:
       # Create a GitHub release
       - name: Create GitHub Release
         uses: actions/create-release@v1
+        tag_name: ${{ github.ref_name }}
+        release_name: Release ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
-          body: |
-            Release ${{ github.ref_name }} is now available.
+          body_path: releases/${{ github.ref_name }}.md
           draft: false
           prerelease: false
           files: artifacts/*
