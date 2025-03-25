@@ -45,6 +45,31 @@ Public contribution is welcome and encouraged. Unless you explicitly state other
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
 dual licensed as above, without any additional terms or conditions.
 
+### Documentation
+
+This is a relatively simple developer facing crate so documentation should primarily exist in line per the rust documentation. Anything that does not associated with a specific block of code such as crate requirements, installation instructions, etc should be documented in this README.md.
+
+### Code Standards
+
+- all code should be formatted per cargo's default fmt command
+- code should target 80% automated code coverage
+
+### Release Process
+
+Releases are managed through both git tags and branches. Branches are used for convenience and tags actually trigger the relevant release actions. Whenever there is a new major or minor release a branch must be created at the relevant hash in the format v\<major\>.\<minor\> (ie v1.33). Branches with such a format are protected by a ruleset and can only be modified by admins. All release tags must point to hashes on said branch. There is also a ruleset protecting all git tags matching the semantic versioning format v*.*.\* so that only admins can add such tags.
+
+#### Major or Minor Release
+
+In summary, you must be an admin and complete the following steps:
+
+- pick a hash
+- confirm all automated tests have passed
+- create a branch at the relevant hash in the format v\<major\>.\<minor\> (ie v1.33).
+- if necessary perform any last minuted changes
+- create a git tag pointing to the tip of that branch in the format v\<major\>.\<minor\>.0 (ie v1.33.0).
+
+The git tag will kick off an automated process that deploys the crate to crates.io after validating crate version matches the tag version and all automated tests pass.
+
 ## Future Work
 
 - support async
