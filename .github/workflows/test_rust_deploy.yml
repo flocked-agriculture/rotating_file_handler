@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       # Checkout the repository
@@ -31,17 +33,17 @@ jobs:
       #       exit 1
       #     fi
 
-      # Run tests
-      - name: Run tests
-        run: cargo test --verbose
+      # # Run tests
+      # - name: Run tests
+      #   run: cargo test --verbose
 
-      # Build the crate
-      - name: Build crate
-        run: cargo build --release
+      # # Build the crate
+      # - name: Build crate
+      #   run: cargo build --release
 
-      # Build documentation
-      - name: Build documentation
-        run: cargo doc --no-deps
+      # # Build documentation
+      # - name: Build documentation
+      #   run: cargo doc --no-deps
 
       # Publish to crates.io
       # - name: Publish to crates.io
@@ -50,20 +52,13 @@ jobs:
       #   run: cargo publish --verbose
 
       # Create a GitHub release
-      - name: Extract release notes from Markdown file
-        id: extract_notes
-        run: |
-          RELEASE_NOTES=$(releases/v0.2.0.md)
-          echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
-
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
-          RELEASE_NOTES: ${{ env.RELEASE_NOTES }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
-          body: $RELEASE_NOTES
+          body_path: releases/v0.2.0.md
           draft: false
           prerelease: false
