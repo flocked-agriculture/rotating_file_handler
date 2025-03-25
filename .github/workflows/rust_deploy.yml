@@ -43,19 +43,6 @@ jobs:
       - name: Build documentation
         run: cargo doc --no-deps
 
-      # Create a release artifact
-      - name: Create release artifact
-        run: |
-          mkdir artifacts
-          cp target/release/* artifacts/
-
-      # Upload artifact for release
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifact
-          path: artifacts/
-
       # Publish to crates.io
       - name: Publish to crates.io
         env:
@@ -73,4 +60,3 @@ jobs:
           body_path: releases/${{ github.ref_name }}.md
           draft: false
           prerelease: false
-          files: artifacts/*
