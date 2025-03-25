@@ -53,8 +53,7 @@ jobs:
       - name: Extract release notes from Markdown file
         id: extract_notes
         run: |
-          cat RELEASE_NOTES.md
-          RELEASE_NOTES=$(cat RELEASE_NOTES.md)
+          RELEASE_NOTES=$(releases/v0.2.0.md)
           echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
 
       - name: Create GitHub Release
