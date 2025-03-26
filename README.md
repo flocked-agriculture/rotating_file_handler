@@ -4,6 +4,7 @@
 [![Documentation](https://docs.rs/rotating_file_handler/badge.svg)](https://docs.rs/rotating_file_handler)
 ![Build + Test](https://github.com/flocked-agriculture/rotating_file_handler/actions/workflows/main_ci.yml/badge.svg?branch=main)
 ![Build + Test + Deploy](https://github.com/flocked-agriculture/rotating_file_handler/actions/workflows/release.yml/badge.svg)
+![GitHub Issues](https://img.shields.io/github/issues/flocked-agriculture/rotating_file_handler.svg?style=flat-square)
 
 This crate contains a simple rotating file handler. It is intended for high frequency robust telemetry logging on physical systems.
 
