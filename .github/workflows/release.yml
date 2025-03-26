@@ -1,4 +1,4 @@
-name: Rust Deploy
+name: Release (Build + Test + Deploy)
 
 on:
   push:
@@ -33,13 +33,13 @@ jobs:
             exit 1
           fi
 
-      # Run tests
-      - name: Run tests
-        run: cargo test --verbose
-
       # Build the crate
       - name: Build crate
         run: cargo build --release
+
+      # Run tests
+      - name: Run tests
+        run: cargo test --verbose
 
       # Build documentation
       - name: Build documentation
