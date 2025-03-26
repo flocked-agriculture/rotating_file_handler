@@ -1,6 +1,7 @@
 # Rotating File Handler
 
 [![Crates.io Version](https://img.shields.io/crates/v/rotating_file_handler.svg)](https://crates.io/crates/rotating_file_handler)
+[![Documentation](https://docs.rs/rotating_file_handler/badge.svg)](https://docs.rs/rotating_file_handler)
 ![Build + Test](https://github.com/flocked-agriculture/rotating_file_handler/actions/workflows/main_ci.yml/badge.svg?branch=main)
 ![Build + Test + Deploy](https://github.com/flocked-agriculture/rotating_file_handler/actions/workflows/release.yml/badge.svg)
 
